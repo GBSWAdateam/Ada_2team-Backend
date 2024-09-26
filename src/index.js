@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 
 //seting static folder
 app.use(express.static("public"));
-
+app.use(express.static('imgs'));
 //route seting
 app.get('/', (req, res) => {
     res.render('login');
