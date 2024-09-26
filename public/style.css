@@ -22,7 +22,7 @@ h2
 .form-container
 {
     width: 900px;
-    height: 500px;
+    height: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -45,10 +45,8 @@ h2
     border-radius: 3px;
 }
 
-.submit-btn
+.submit-btn 
 {
-    position: relative;
-    top: 10%;
     display: block;
     width: 100%;
     padding: 10px;
@@ -57,7 +55,9 @@ h2
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 3%;
 }
+
 
 .submit-btn:hover
 {
@@ -72,7 +72,7 @@ p
 a
 {
     text-decoration: none;
+    font-weight: 900;
     color: black;
-    border-radius: 40px;
-    background-color: #4565a0;
+    background-color: #95b9fc;
 }

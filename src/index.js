@@ -44,6 +44,11 @@ app.get('/kakaotalk' , (req,res) => {
     res.render('kakaotalk');
 })
 
+//reset-password
+app.get('/reset-password' , (req,res) => {
+    res.render('reset-password');
+})
+
 // Register user
 app.post("/signup", async (req, res) => {
     try {
@@ -61,7 +66,7 @@ app.post("/signup", async (req, res) => {
         } else {
             const userdata = await collection.insertMany(data);
             console.log(userdata);
-            res.render("signup-b");
+            res.send("이거임?");
         }
     } catch (error) {
         console.log("Error:", error);
@@ -72,9 +77,11 @@ app.post("/signup", async (req, res) => {
 // Login user
 app.post("/login", async (req, res) => {
     try {
-        const user = await collection.findOne({ name: req.body.name });
+        const user = await collection.findOne({ name: req.body.name, password: req.body.password });
         if (!user) {
-            return res.send("User not found");
+            app.get("/usersign", (req, res) => {
+                res.render("usersign");
+            });
         }
 
       
@@ -82,12 +89,14 @@ app.post("/login", async (req, res) => {
         if (isMatch) {
             res.render("home");
         } else {
-            res.send("Wrong password");
+            res.render("worngpassword");
         }
     } catch (error) {
-        console.log("Error:", error);
+        console.log("Error during login:", error); //error log
         res.send("An error occurred");
     }
+
+
 });
 
 //server seting

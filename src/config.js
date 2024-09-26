@@ -9,8 +9,11 @@ connected.then(() => {
     console.log("Database connection failed");
 })
 
+
+
 //Create schema
 const LoginSchema = new mongoose.Schema({
+    
     name: {
         type: String,
         required: true,
@@ -19,7 +22,7 @@ const LoginSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-})
+});
 
 //collection part
 const collection = new mongoose.model("users", LoginSchema);
