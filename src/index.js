@@ -1,5 +1,6 @@
 //exprestt seting
 const express = require('express');
+const jquery = require('jquery');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const collection = require('./config'); 
@@ -31,6 +32,17 @@ app.get('/views/login' , (req,res) => {
 app.get('/signup', (req, res) => {
     res.render('signup');
 });
+
+
+//naver
+app.get('/naver' , (req,res) => {
+    res.render('naver');
+})
+
+//kakaotalk
+app.get('/kakaotalk' , (req,res) => {
+    res.render('kakaotalk');
+})
 
 // Register user
 app.post("/signup", async (req, res) => {
@@ -82,4 +94,6 @@ app.post("/login", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+//create a new account
 

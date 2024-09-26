@@ -21,7 +21,8 @@ h2
 
 .form-container
 {
-    width: 300px;
+    width: 900px;
+    height: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -46,6 +47,8 @@ h2
 
 .submit-btn
 {
+    position: relative;
+    top: 10%;
     display: block;
     width: 100%;
     padding: 10px;
