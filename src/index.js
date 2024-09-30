@@ -33,6 +33,10 @@ app.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+app.get("login")
+{
+     
+}
 
 //naver
 app.get('/naver' , (req,res) => {
@@ -66,7 +70,7 @@ app.post("/signup", async (req, res) => {
         } else {
             const userdata = await collection.insertMany(data);
             console.log(userdata);
-            res.send("이거임?");
+            res.redirect("/signup-b");  // 회원가입 성공 시 /signup-b로 리다이렉트
         }
     } catch (error) {
         console.log("Error:", error);
@@ -74,29 +78,29 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+// signup-b 라우트를 별도로 정의
+app.get("/signup-b", (req, res) => {
+    res.render("signup-b");
+});
+
 // Login user
 app.post("/login", async (req, res) => {
     try {
-        const user = await collection.findOne({ name: req.body.name, password: req.body.password });
+        const user = await collection.findOne({ name: req.body.name });
         if (!user) {
-            app.get("/usersign", (req, res) => {
-                res.render("usersign");
-            });
-        }
-
-      
-        const isMatch = await bcrypt.compare(req.body.password, user.password);
-        if (isMatch) {
-            res.render("home");
+            res.render("usersign");
         } else {
-            res.render("worngpassword");
+            const isMatch = await bcrypt.compare(req.body.password, user.password);
+            if (isMatch) {
+                res.render("home");
+            } else {
+                res.render("wrongpassword");
+            }
         }
     } catch (error) {
-        console.log("Error during login:", error); //error log
+        console.log("Error during login:", error); // 에러 로그
         res.send("An error occurred");
     }
-
-
 });
 
 //server seting
